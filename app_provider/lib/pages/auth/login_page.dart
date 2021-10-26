@@ -1,5 +1,7 @@
 import 'package:app_provider/pages/auth/signup_view.dart';
+import 'package:app_provider/providers/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -73,7 +75,12 @@ class LoginPage extends StatelessWidget {
                     child: ElevatedButton(
                       child: const Text('Login'),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          loginUser(
+                              context: context,
+                              email: nameController.text.trim(),
+                              password: passwordController.text.trim());
+                        }
                       },
                     )),
                 Row(
@@ -96,5 +103,14 @@ class LoginPage extends StatelessWidget {
             ),
           )),
     ));
+  }
+
+  loginUser(
+      {required String email,
+      required String password,
+      required BuildContext context}) {
+    Provider.of<AuthViewModel>(context, listen: false)
+        .signInWithEmailAndPassword(
+            email: email, password: password, context: context);
   }
 }

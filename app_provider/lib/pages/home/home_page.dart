@@ -2,7 +2,9 @@ import 'package:app_provider/pages/todos/add_todo_page.dart';
 import 'package:app_provider/pages/todos/all_todos_page.dart';
 import 'package:app_provider/pages/todos/complete_todos_page.dart';
 import 'package:app_provider/pages/todos/incomplete_todos_page.dart';
+import 'package:app_provider/providers/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -30,6 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 icon: const Icon(Icons.add),
               ),
+              IconButton(
+                  onPressed: () {
+                    Provider.of<AuthViewModel>(context, listen: false)
+                        .signOutUser(context);
+                  },
+                  icon: const Icon(Icons.logout))
             ],
             bottom: const TabBar(
               tabs: [

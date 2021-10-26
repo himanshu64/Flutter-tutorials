@@ -8,7 +8,7 @@ class AllTodos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final allTodos = Provider.of<TodoModel>(context).allTodos;
+    final allTodos = Provider.of<TodoModel>(context, listen: false).allTodos;
     return Container(
       child: TodoListView(
         todos: allTodos,

@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // ChangeNotifierProvider<TodoModel>(
-        // create: (context) => TodoModel(),)
+        ChangeNotifierProvider<TodoModel>(
+          create: (context) => TodoModel(),
+        ),
         Provider<AuthViewModel>(
           create: (_) => AuthViewModel(FirebaseAuth.instance),
         ),

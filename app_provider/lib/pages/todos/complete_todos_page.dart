@@ -10,7 +10,7 @@ class CompleteTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Todo> completeTodos =
-        Provider.of<TodoModel>(context).completeTodos;
+        Provider.of<TodoModel>(context, listen: false).completeTodos;
 
     return Container(
         child: TodoListView(
